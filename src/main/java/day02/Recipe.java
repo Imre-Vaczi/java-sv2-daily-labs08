@@ -8,20 +8,20 @@ public class Recipe {
 
     private String name;
     private List<String> ingredients = new ArrayList<>();
+    private String description;
 
     public Recipe(String name) {
         this.name = name;
     }
 
-    public Recipe(String name, List<String> ingredients) {
+    public Recipe(String name, String description) {
         this.name = name;
-        this.ingredients = ingredients;
+        this.description = description;
     }
 
-    public void addIngredient(String... components) {
-        for (String comp : components) {
-            ingredients.add(comp);
-        }
+    public void addIngredient(String component, String... components) {
+        ingredients.add(component);
+        ingredients.addAll(Arrays.asList(components));
     }
 
     public String getName() {
@@ -30,5 +30,9 @@ public class Recipe {
 
     public List<String> getIngredients() {
         return ingredients;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

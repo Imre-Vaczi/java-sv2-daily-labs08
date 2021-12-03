@@ -18,10 +18,10 @@ class RecipeTest {
     }
 
     @Test
-    void testGeneratingNameAndIngredient() {
-        Recipe recipe = new Recipe("fröccs", Arrays.asList("bor"));
+    void testGeneratingNameAndDesc() {
+        Recipe recipe = new Recipe("fröccs", "klasszikus nyári firssítő");
         assertEquals("fröccs", recipe.getName());
-        assertEquals(1, recipe.getIngredients().size());
+        assertEquals("klasszikus nyári firssítő", recipe.getDescription());
     }
 
     @Test
@@ -30,11 +30,11 @@ class RecipeTest {
         drinkRecipe.add("bor");
         drinkRecipe.add("szóda");
         drinkRecipe.add("jég");
-        Recipe recipe = new Recipe("fröccs", drinkRecipe);
-        recipe.addIngredient("extra bor", "extra szóda");
+        Recipe recipe = new Recipe("fröccs", "klasszikus nyári firssítő");
+        recipe.addIngredient("bor", "szóda");
 
         assertEquals("fröccs", recipe.getName());
-        assertEquals(5, recipe.getIngredients().size());
+        assertEquals(2, recipe.getIngredients().size());
     }
 
 }
