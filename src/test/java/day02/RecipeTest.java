@@ -15,6 +15,7 @@ class RecipeTest {
         Recipe recipe = new Recipe("fröccs");
         assertEquals("fröccs", recipe.getName());
         assertEquals(0, recipe.getIngredients().size());
+        assertNull(recipe.getDescription());
     }
 
     @Test
