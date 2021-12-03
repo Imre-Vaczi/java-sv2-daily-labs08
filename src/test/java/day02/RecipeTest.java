@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -25,10 +26,15 @@ class RecipeTest {
 
     @Test
     void testAddIngredient() {
-        Recipe recipe = new Recipe("fröccs"); //Arrays.asList("bor")
-        recipe.addIngredient("szóda", "bor");
+        List<String> drinkRecipe = new ArrayList<>();
+        drinkRecipe.add("bor");
+        drinkRecipe.add("szóda");
+        drinkRecipe.add("jég");
+        Recipe recipe = new Recipe("fröccs", drinkRecipe);
+        recipe.addIngredient("extra bor", "extra szóda");
+
         assertEquals("fröccs", recipe.getName());
-        assertEquals(2, recipe.getIngredients().size());
+        assertEquals(5, recipe.getIngredients().size());
     }
 
 }
