@@ -14,7 +14,7 @@ public class NumberSequence {
 
     public NumberSequence(int length, int lowerThreshold, int upperThreshold) {
         for (int i = 0; i < length; i++) {
-            randomIntList.add(new Random().nextInt(lowerThreshold, upperThreshold));
+            randomIntList.add(new Random().nextInt(lowerThreshold, upperThreshold + 1));
         }
     }
 
