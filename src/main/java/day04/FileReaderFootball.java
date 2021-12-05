@@ -11,7 +11,7 @@ public class FileReaderFootball {
 
     private List<String> resultList = new ArrayList<>();
 
-    public String findSmallestDiff(Path path) {
+    public String findSmallestTeamDifference(Path path) {
         List<String> raw = readFileFromPath(path);
         List<String> formatted = formatFileFromPath(raw);
         return popMinimumSpread(formatted);
@@ -40,8 +40,8 @@ public class FileReaderFootball {
         Integer min = Integer.MAX_VALUE;
         String day = "";
         for (String item : inputList) {
-            if ((Integer.parseInt(item.split(";")[1]) - Integer.parseInt(item.split(";")[2])) < min ) {
-                min = Integer.parseInt(item.split(";")[1]) - Integer.parseInt(item.split(";")[2]);
+            if (Math.abs(Integer.parseInt(item.split(";")[1]) - Integer.parseInt(item.split(";")[2])) < min ) {
+                min = Math.abs(Integer.parseInt(item.split(";")[1]) - Integer.parseInt(item.split(";")[2]));
                 day = item.split(";")[0];
             }
         }
@@ -50,7 +50,7 @@ public class FileReaderFootball {
 
     public static void main(String[] args) {
         FileReaderFootball fileReaderFootball = new FileReaderFootball();
-        String team = fileReaderFootball.findSmallestDiff(Paths.get("src/main/resources/football.dat"));
+        String team = fileReaderFootball.findSmallestTeamDifference(Paths.get("src/main/resources/football.dat"));
         System.out.println(team);
     }
 
