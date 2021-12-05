@@ -11,18 +11,18 @@ public class FileReader {
 
     private List<String> temperatureList = new ArrayList<>();
 
-    private List<String> readFileFromPath(Path path) {
-        try {
-            return Files.readAllLines(path);
-        } catch (IOException ioe) {
-            throw new IllegalArgumentException("File can not be read.");
-        }
-    }
-
     public int findSmallestTemperatureSpread(Path path) {
         List<String> raw = readFileFromPath(path);
         List<String> formatted = formatFileFromPath(raw);
         return popMinimumSpread(formatted);
+    }
+
+    private List<String> readFileFromPath(Path path) {
+        try {
+            return Files.readAllLines(path);
+        } catch (IOException ioe) {
+            throw new IllegalStateException("File can not be read.");
+        }
     }
 
     private List<String> formatFileFromPath(List<String> stringList) {
