@@ -7,11 +7,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FileReader {
+public class FileReaderFootball {
 
-    private List<String> temperatureList = new ArrayList<>();
+    private List<String> resultList = new ArrayList<>();
 
-    public int findSmallestTemperatureSpread(Path path) {
+    public String findSmallestDiff(Path path) {
         List<String> raw = readFileFromPath(path);
         List<String> formatted = formatFileFromPath(raw);
         return popMinimumSpread(formatted);
@@ -27,28 +27,31 @@ public class FileReader {
 
     private List<String> formatFileFromPath(List<String> stringList) {
         List<String> result = new ArrayList<>();
-        for (int i = 2; i < stringList.size() - 1; i++) {
-            result.add(stringList.get(i).substring(2,4)+";"+stringList.get(i).substring(6,8)+";"+stringList.get(i).substring(12,14));
+        for (int i = 1; i < stringList.size(); i++) {
+            if (i != 18) {
+                result.add(stringList.get(i).substring(7,21).trim()+";"+stringList.get(i).substring(43,45)+";"+stringList.get(i).substring(50,52));
+            }
+
         }
         return result;
     }
 
-    private int popMinimumSpread(List<String> inputList) {
+    private String popMinimumSpread(List<String> inputList) {
         Integer min = Integer.MAX_VALUE;
-        int day =0 ;
+        String day = "";
         for (String item : inputList) {
             if ((Integer.parseInt(item.split(";")[1]) - Integer.parseInt(item.split(";")[2])) < min ) {
                 min = Integer.parseInt(item.split(";")[1]) - Integer.parseInt(item.split(";")[2]);
-                day = Integer.parseInt(item.split(";")[0].trim());
+                day = item.split(";")[0];
             }
         }
         return day;
     }
 
     public static void main(String[] args) {
-
-        FileReader fileReader = new FileReader();
-        System.out.println(fileReader.findSmallestTemperatureSpread(Paths.get("src/main/resources/weather.dat")));
+        FileReaderFootball fileReaderFootball = new FileReaderFootball();
+        String team = fileReaderFootball.findSmallestDiff(Paths.get("src/main/resources/football.dat"));
+        System.out.println(team);
     }
 
 }
